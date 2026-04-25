@@ -1,0 +1,364 @@
+Malpractice
+Passing mutable lists or dictionaries as default arguments can have unforeseen consequences. The persistent object is reused across function calls.
+Bare except clauses hide actual programming errors and lose information about the error.
+"Without 'with', files may not be properly closed if exceptions occur, leading to memory issues or file corruption."
+"__init__ should only initialize instance members, not return values."
+Python requires consistent indentation. Mixing spaces and tabs causes syntax errors and readability issues.
+Manual key checking is verbose. dict.get() provides cleaner default value handling.
+"More specific exceptions must come before base classes, otherwise they become unreachable."
+Manual dictionary initialization is verbose. defaultdict provides automatic default values.
+super() requires the child class name as first argument and self as second for proper inheritance.
+Methods that don't use self or cls should be functions or static methods.
+"Context managers must implement __exit__ with all required parameters (self, exc_type, exc_value, traceback)."
+Instance methods must include 'self' as first parameter to access instance members.
+__future__ imports must be at the very top of the module to work correctly.
+Python favors direct attribute access. Use properties only when computation is needed.
+"Overwriting built-in functions (like list, dict) breaks functionality elsewhere."
+Protected members (_prefix) are intended for internal use only and may change.
+Lambdas are for anonymous functions. Use def for named functions.
+Functions should return consistent types. Use exceptions for error cases.
+Wildcard imports pollute namespace and make code hard to trace.
+Single-letter variable names make code hard to understand and maintain.
+Global variables cause bugs from multiple functions accessing shared state.
+Function names should be lowercase with underscores per PEP 8.
+Manual index iteration is verbose. zip() provides cleaner parallel iteration.
+Tuple unpacking is more concise and readable.
+"Use 'is' for None comparison, not '=='."
+isinstance() is preferred over type() for type checking.
+Explicit comparison to True is redundant.
+exec() executes arbitrary strings as code and is unsafe.
+Using dictionary keys in format strings improves clarity.
+Lists are slow for membership checks compared to sets.
+items() is more efficient and readable than key-based access.
+Loop else executes even if no meaningful condition was met unless controlled by break.
+Avoid bare 'except' catching all exceptions - this hides errors and makes debugging impossible
+Do not silently ignore exceptions - this hides critical errors
+Avoid catching generic Exception; use specific exceptions instead
+"Exceptions should be logged or handled explicitly, not silently ignored"
+Re-raising exceptions should preserve context to maintain debugging information
+Do not use exceptions for normal control flow - use conditionals instead
+Use 'raise ... from e' to preserve original exception traceback
+Do not use mutable lists as default arguments - they persist across calls
+Do not use mutable dicts as default arguments - they persist across calls
+Do not use mutable sets as default arguments - they persist across calls
+Default arguments should not call functions - they execute at module load time
+Do not access index equal to array length - causes IndexError
+Ensure loops include all intended elements
+Check slicing boundaries carefully to avoid missing or extra characters
+"High index should be len(array)-1, not len(array)"
+"Upper bound should be exclusive (<), not inclusive (<=)"
+Function has too many nested conditions - refactor into smaller functions
+Too many conditional branches reduce readability and maintainability
+Function does too many things - violates single responsibility principle
+Function has too many parameters - use config object instead
+Remove unused imports - they clutter code and slow startup
+Function parameters should be used or removed
+Variables declared but never used should be removed
+Code after return/raise is never executed
+Condition branch can never be reached due to ordering
+Function defined but never used should be removed
+Remove commented-out code instead of keeping it - use version control
+Avoid hardcoded numeric literals - use named constants
+"Never hardcode passwords, tokens, or secrets in source code"
+Avoid hardcoded timeout values - make them configurable
+Do not hardcode IPs or URLs - use configuration
+Avoid hardcoded file system paths - use configuration
+Use consistent naming style following PEP 8
+Use meaningful variable/function names that describe purpose
+Avoid single-letter names except for simple loop counters
+Avoid similar variable names in same scope that can be confused
+Class names should use CapWords/PascalCase convention
+Function names should use snake_case convention
+Constants should be UPPER_CASE with underscores
+Do not override built-in function names
+Too many nested if statements reduce readability
+Nested if statements with same condition can be combined
+Boolean return can be simplified to direct condition
+Same condition repeated in multiple branches should be consolidated
+Explicit True/False comparison is redundant
+Using shell commands with user input creates injection vulnerabilities
+shell=True with user input allows command injection
+eval() on user input executes arbitrary code
+MD5 and SHA1 are broken for security purposes
+Plain or weakly hashed passwords are a security risk
+random module is not suitable for security purposes
+Time-based or sequential tokens are guessable
+ECB mode encryption is insecure - use authenticated encryption
+Direct string equality for secrets is vulnerable to timing attacks
+Fixed or predictable IVs weaken encryption security
+Do not use mutable data structures for argument defaults
+Do not catch blind exception
+Hardcoded password detected
+Use of exec detected
+Use of eval detected
+Module imported but unused
+Local variable assigned but never used
+Line too long
+Bare except clause
+Comparison to None should be 'cond is None'
+Equality comparison to True/False
+Trailing whitespace
+No newline at end of file
+Unnecessary generator (rewrite using set())
+Unnecessary generator (rewrite as dict comprehension)
+Unnecessary list/tuple literal (rewrite as set literal)
+Unnecessary comprehension (rewrite using constructor)
+Use single if instead of nested if statements
+Return condition directly instead of if-else
+Use contextlib.suppress instead of try-except-pass
+Use ternary operator instead of if-else-block
+Combine if branches using logical or operator
+Use single with statement with multiple contexts
+Use 'key in dict' instead of 'key in dict.keys()'
+Do not explicitly return None
+Missing explicit return at end of function
+Unnecessary else after return statement
+Use Path.resolve() instead of os.path.abspath()
+Use Path.exists() instead of os.path.exists()
+Use Path.expanduser() instead of os.path.expanduser()
+Use Path.is_dir() instead of os.path.isdir()
+Use Path.is_file() instead of os.path.isfile()
+Use Path with / operator instead of os.path.join()
+Use Path.open() instead of builtin open()
+Use modern type annotations (list instead of List)
+Use X | Y syntax for unions
+UTF-8 encoding declaration is unnecessary
+Unnecessary call (rewrite as literal)
+Use f-string instead of .format() call
+Unused function argument
+Unused method argument
+Function is too complex
+Too many return statements
+Too many branches
+Too many arguments in function definition
+Too many statements
+Magic value used in comparison
+Use elif instead of else then if
+Import should be at top level of file
+Nonlocal name found without binding
+Invalid object in __all__ (must be strings)
+Repeated keyword argument
+Iterated set is modified within for loop
+Use list/set/dict comprehension instead of concatenation
+Use explicit conversion flag in f-string
+Use next() instead of slice for first element
+Avoid quadratic list summation (use ''.join())
+Unnecessary key check before dictionary access
+Possible f-string without f prefix
+None should be at end of type union
+print statement found (use logging instead)
+pprint found (remove debugging code)
+Use logging.getLogger() to instantiate loggers
+Use logging.exception with falsy exc_info
+Call on root logger (use module logger instead)
+Logging statement uses f-string (use lazy evaluation)
+Private member accessed from outside
+Do not assign lambda expression (use def)
+Invalid escape sequence
+Loop control variable not used in loop body
+Function call in default argument
+getattr() with constant attribute value
+setattr() with constant attribute value
+assert False (raise AssertionError instead)
+Pointless comparison (use assert or remove)
+Useless expression (assign or remove)
+Function defined in loop uses loop variable
+Star argument unpacking after keyword argument
+No explicit stacklevel in warning
+Raise exception with from clause
+zip() without explicit strict parameter
+Mutation to loop iterable during iteration
+Variable shadows Python builtin
+Function argument shadows Python builtin
+Class attribute shadows Python builtin
+Missing trailing comma
+datetime.datetime() called without tzinfo
+datetime.datetime.now() called without tz argument
+Model does not define __str__ method
+Raw string literal in exception
+f-string literal in exception
+f-string without placeholders
+Use == to compare constant literals
+If test is a tuple (always True)
+break outside loop
+continue outside loop
+yield outside function
+return outside function
+Syntax error in forward annotation
+Redefinition of unused name
+Undefined name
+Undefined name in __all__
+Local variable referenced before assignment
+raise NotImplemented should be raise NotImplementedError
+Invalid unicode characters in code
+Implicitly concatenated string literals on one line
+Class name should use CapWords convention
+Function name should be lowercase
+Argument name should be lowercase
+First argument of class method should be named cls
+First argument of method should be named self
+Variable in function should be lowercase
+Exception name should have Error suffix
+Use list comprehension instead of manual for loop
+Use list() or list.copy() to create a copy
+Use dictionary comprehension instead of manual for loop
+No builtin eval() allowed
+warn is deprecated in favor of warning
+Use specific rule codes when ignoring type issues
+Use specific rule codes when using noqa
+Mock method should be called
+Use regular assert instead of unittest-style assertion
+pytest.raises() is too broad (use match parameter)
+pytest.raises() block should contain single statement
+Assertion should be broken down into multiple parts
+No teardown in fixture (use return instead of yield)
+Double quotes preferred (or single quotes if configured)
+Change outer quotes to avoid escaping inner quotes
+Unnecessary parentheses on raised exception
+Unused noqa directive
+Use of assert detected (can be optimized away)
+Insecure usage of temporary file/directory
+try-except-pass detected (log the exception)
+Request call without timeout
+tarfile.extractall() without member filtering
+pickle insecure for untrusted data
+Standard random not suitable for cryptographic purposes
+Unsafe yaml.load() (use yaml.safe_load)
+subprocess with shell=True (security risk)
+subprocess call with untrusted input
+Partial executable path (security risk)
+SQL injection risk with string-based query
+Jinja2 with autoescape=False (XSS risk)
+Create your own exception (don't raise vanilla Exception)
+Avoid long messages outside exception class
+Prefer TypeError for invalid type
+Use raise from to specify exception cause
+Consider moving code to else block
+Abstract raise to inner function
+Unnecessary parentheses after class definition
+Use type keyword for type aliases
+"Do not use informal or non-descriptive variable names in production or formal codebases; names should clearly express intent."
+"Do not leave debug print statements such as 'here', 'here1', or 'does this work?' in production code."
+"Avoid inefficient sorting approaches when built-in optimized sorting functions are available."
+"Avoid excessive nested loops, especially deeply nested for-loops, as they significantly reduce readability and performance."
+"Do not create variables, functions, or structures that are never used in the final code."
+"Do not define functions that do not return anything unless their purpose is explicitly side effects like logging or I/O."
+"Avoid reusing the same variable name in overlapping scopes where it can lead to confusion or unintended overwrites."
+"Do not leave commented-out debugging code or old logic scattered throughout production files."
+"Avoid overly complex one-line expressions that sacrifice readability for brevity."
+"Do not mix concerns inside a single function; each function should ideally have a single responsibility."
+"Avoid magic numbers; always replace them with named constants for clarity and maintainability."
+"Do not hardcode temporary test values directly into production logic."
+"Avoid excessive indentation levels that make code hard to follow visually."
+"Do not ignore error handling; silent failures make debugging extremely difficult."
+"Avoid inconsistent formatting or style within the same codebase."
+"Do not duplicate logic across multiple functions when it can be abstracted into a shared utility."
+"Avoid using misleading or overly generic function names that do not describe their behavior."
+"Do not leave experimental or half-finished code paths in production branches."
+"Avoid redundant checks that are already guaranteed by prior logic."
+"Do not overuse global state, as it makes code harder to test and debug."
+"Avoid mixing debugging artifacts with production logic (e.g., temporary logs or test flags)."
+description
+"Using emojis in comments that make the code look like it was written by an overly enthusiastic AI assistant (e.g., '# Let's optimize this function  #Python')"
+"Writing 'I'm an AI assistant' in a docstring and forgetting to remove it before committing"
+"Copy-pasting code from Stack Overflow and leaving the comment '# Found this on Stack Overflow, hope it works '"
+"Defining a variable called `temp` for the 47th time in the same file"
+"Writing a function that does 15 different things and naming it `helper()`"
+"Adding a TODO comment in 2019 that still says 'TODO: fix this eventually'"
+"Using `x`, `y`, `z`, `a`, `b`, `c` as variable names in a 200-line function"
+"Creating a class called `DataProcessor` that processes exactly one specific type of data that never appears again"
+"Writing `if something == True:` as if Python doesn't understand booleans"
+"Using `print()` statements for debugging and then commenting them out instead of removing them"
+"Naming variables `thing1`, `thing2`, `thing3` after you gave up finding meaningful names"
+"Copying a function from another file and renaming it to `function_final_FINAL_actually_working_v2.py`"
+"Writing a comment that says '# This should never happen' right before code that definitely happens in production"
+"Using `except: pass` and then wondering why bugs are impossible to find"
+"Creating a function that returns `None` 99% of the time and `[1,2,3]` the other 1%"
+"Naming a dictionary `d` and then writing `d['d']` two lines later like a riddle"
+"Writing `len(my_list) > 0` instead of just `if my_list:` because you forgot Pythonic style"
+"Adding a comment '# I have no idea why this works but don't touch it'"
+"Using `eval()` on user input because 'it's just a quick prototype' (famous last words)"
+"Creating a global variable called `global_counter` and modifying it from 8 different functions"
+"Writing a 500-line function and calling it `small_utility()`"
+"Having 15 unused imports because you copied from another project and never cleaned up"
+"Writing `return` at the end of a function that already implicitly returns `None`"
+"Naming a test `test_1`, `test_2`, `test_3` with zero description of what they test"
+"Using `time.sleep(0.1)` in a loop because 'it makes the program feel more responsive'"
+"Creating a class with 30 methods where 25 are never called anywhere"
+"Writing '# FIXME: This is broken' and committing it 6 months ago"
+"Using `is` to compare strings because 'they should be the same object, right?'"
+"Naming a function `do_stuff()` and leaving it for someone else to figure out what 'stuff' means"
+"Adding emoji log messages like logging.info('User authenticated ') in production"
+"Creating a variable called `final_version` and then making 15 changes after it"
+"Writing `except Exception as e: print(e)` and calling it error handling"
+"Using `range(len(arr))` and then using `arr[i]` when you could just iterate directly"
+"Defining a default argument as `[]` and then being surprised when it keeps growing"
+"Writing a comment that says '# This code is terrible' and leaving it for your future self"
+"Creating five different functions that all do almost the same thing with tiny variations"
+"Naming a boolean variable `flag` without explaining what the flag represents"
+"Using `type(x) == type(y)` instead of `isinstance()` because you hate inheritance"
+"Writing a function that takes 12 arguments and thinking 'this is fine'"
+"Adding `# pylint: disable=all` instead of fixing actual issues"
+"Creating a class called `Utils` that is just a random collection of unrelated functions"
+"Using `json.loads(json.dumps(data))` as a 'deep copy' workaround"
+"Writing a comment that says '# Magic happens here' without explaining the actual logic"
+"Naming variables `data1`, `data2`, `data3` because you're on your third coffee"
+"Using `except:` without logging and calling it 'graceful error handling'"
+"Creating a function called `process()` that processes... honestly no one knows what"
+"Writing `if x: return True else: return False` instead of `return x`"
+"Using `__dict__` directly because 'encapsulation is for Java developers'"
+"Naming a test file `test_tests.py` and confusing everyone including yourself"
+"Writing '# This might cause a race condition but we'll fix it later' (spoiler: never fixed)"
+"Creating a parameter called `**kwargs` and then not documenting what kwargs are allowed"
+"Using `assert` for data validation and being surprised when it's disabled in production"
+"Writing a docstring that says 'TODO: Write docstring'"
+"Creating a variable called `something` and using it 5 lines later in a completely different context"
+"Using `map(list, zip(*matrix))` to transpose a matrix and leaving a comment that says '# I don't understand this either'"
+"Writing a lambda function that's 40 characters long and calling it 'elegant'"
+"Creating a function that modifies its input parameters AND returns something, for maximum confusion"
+"Naming a module `helpers.py` and it's now 2000 lines long"
+"Writing `if user.is_active == True and user.is_verified == True:` instead of just `if user.is_active and user.is_verified`"
+"Using `eval()` because 'dynamic code is cool' (your security team disagrees)"
+"Creating a singleton with a module-level variable and then being confused about imports"
+"Writing a comment that says '# This algorithm is O(n) I think' (it's actually O(n²))"
+"Naming a function `calculate()` but it actually stores data to a database"
+"Using `defaultdict(lambda: defaultdict(list))` and forgetting how to access any value"
+"Writing `raise Exception('Something went wrong')` with zero context about what or why"
+"Creating a context manager that just passes through without actually managing anything"
+"Naming a variable `_` and then using it for three different purposes in the same function"
+"Writing `while True:` with no break condition because 'it'll exit eventually... right?'"
+"Using `global` inside a nested function because 'it's just one variable'"
+"Creating a decorator that permanently breaks type hints and calling it 'advanced Python'"
+"Writing a regex that's longer than the function it's in and calling it 'parsing'"
+"Using `pickle.load` on untrusted files because 'it's more convenient than JSON'"
+"Naming a class `Manager` without specifying what it manages (spoiler: everything and nothing)"
+"Writing '# This code was written at 3 AM, handle with care'"
+"Creating a dictionary with 20 key-value pairs and formatting it all on one line"
+"Using `sys.setrecursionlimit(1000000)` instead of rewriting recursive function to iterative"
+"Writing a function that returns either a list, dict, None, or raises an exception (surprise!)"
+"Naming a variable `input` and shadowing the built-in function for the rest of the file"
+"Creating a class with `__slots__` and then dynamically adding attributes anyway"
+"Writing a comment that says '# This is hacky but I'm in a hurry' (classic)"
+"Using `from module import *` and then not knowing where any function came from"
+"Creating a nested list comprehension with three `for` clauses and two `if` filters"
+"Writing `datetime.now()` at the start and end of a function and calling it performance monitoring"
+"Naming a function `convert()` but it converts between 15 different formats depending on input"
+"Using `try-finally` without `except` because 'I only care about cleanup'"
+"Creating a configuration dictionary that's mutated by 10 different modules"
+"Writing `if condition: pass else: do_something()` instead of `if not condition: do_something()`"
+"Naming a test `extremely_important_test_do_not_delete.py` and it's never run"
+"Using `functools.lru_cache(maxsize=None)` on a function with side effects (chaos ensues)"
+"Writing a metaclass that no one on the team understands including the author"
+"Creating a circular import and resolving it with a late import inside a function"
+"Naming a variable `not_a_pickle_i_swear` and loading it with `pickle.load()`"
+"Writing '# ASK: Is this right?' and committing without ever asking"
+"Using `os.system('rm -rf /')` in a commented block and hoping no one uncomments it"
+"Creating a function that's 5 levels of nested functions deep because 'closure magic'"
+"Writing a type hint that says `-> Any` because you gave up on figuring out the return type"
+"Naming a module `temp.py` and now it's production-critical and no one can rename it"
+"Using `except:` and `continue` in a loop, silently skipping all errors forever"
+"Writing a `__repr__` method that returns a string that can't be used to recreate the object"
+"Creating a property that does database queries and calling it 'lazy loading'"
+"Writing '# I'm going to refactor this soon' and adding more features instead"
+"Using `getattr` with a dynamic string because 'metaprogramming is powerful'"
+"Naming a constant `MAX` without specifying what it's the maximum of"

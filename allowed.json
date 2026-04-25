@@ -1,0 +1,16 @@
+{
+  "intent": [
+    "approval", "disapproval", "criticism", "praise",
+    "realization", "confusion", "comparison", "contrast",
+    "cause_effect", "expectation_vs_reality", "self_own",
+    "argument", "question", "explanation", "warning"
+  ],
+  "tone": [
+    "serious", "sarcastic", "ironic", "wholesome",
+    "aggressive", "playful", "dark", "absurd"
+  ],
+  "structure": [
+    "reaction", "dialogue", "two_panel", "multi_panel",
+    "labeling", "escalation", "before_after", "choice"
+  ]
+}
