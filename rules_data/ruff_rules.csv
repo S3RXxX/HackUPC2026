@@ -1,0 +1,152 @@
+Code,Name,Category,Message
+B006,mutable-argument-default,Logic Error,Do not use mutable data structures for argument defaults
+BLE001,blind-except,Error Handling,Do not catch blind exception
+S105,hardcoded-password-string,Security,Hardcoded password detected
+S102,exec-builtin,Security,Use of exec detected
+S307,suspicious-eval-usage,Security,Use of eval detected
+F401,unused-import,Code Style,Module imported but unused
+F841,unused-variable,Code Style,Local variable assigned but never used
+E501,line-too-long,Code Style,Line too long
+E722,bare-except,Error Handling,Bare except clause
+E711,none-comparison,Code Style,Comparison to None should be 'cond is None'
+E712,true-false-comparison,Code Style,Equality comparison to True/False
+W291,trailing-whitespace,Code Style,Trailing whitespace
+W292,missing-newline-at-end-of-file,Code Style,No newline at end of file
+C401,unnecessary-generator-set,Performance,Unnecessary generator (rewrite using set())
+C402,unnecessary-generator-dict,Performance,Unnecessary generator (rewrite as dict comprehension)
+C405,unnecessary-literal-set,Code Style,Unnecessary list/tuple literal (rewrite as set literal)
+C416,unnecessary-comprehension,Code Style,Unnecessary comprehension (rewrite using constructor)
+SIM102,collapsible-if,Code Style,Use single if instead of nested if statements
+SIM103,needless-bool,Code Style,Return condition directly instead of if-else
+SIM105,suppressible-exception,Error Handling,Use contextlib.suppress instead of try-except-pass
+SIM108,if-else-block-instead-of-if-exp,Code Style,Use ternary operator instead of if-else-block
+SIM114,if-with-same-arms,Code Style,Combine if branches using logical or operator
+SIM117,multiple-with-statements,Code Style,Use single with statement with multiple contexts
+SIM118,in-dict-keys,Performance,Use 'key in dict' instead of 'key in dict.keys()'
+RET501,unnecessary-return-none,Code Style,Do not explicitly return None
+RET503,implicit-return,Code Style,Missing explicit return at end of function
+RET505,superfluous-else-return,Code Style,Unnecessary else after return statement
+PTH100,os-path-abspath,Best Practice,Use Path.resolve() instead of os.path.abspath()
+PTH110,os-path-exists,Best Practice,Use Path.exists() instead of os.path.exists()
+PTH111,os-path-expanduser,Best Practice,Use Path.expanduser() instead of os.path.expanduser()
+PTH112,os-path-isdir,Best Practice,Use Path.is_dir() instead of os.path.isdir()
+PTH113,os-path-isfile,Best Practice,Use Path.is_file() instead of os.path.isfile()
+PTH118,os-path-join,Best Practice,Use Path with / operator instead of os.path.join()
+PTH123,builtin-open,Best Practice,Use Path.open() instead of builtin open()
+UP006,non-pep585-annotation,Best Practice,Use modern type annotations (list instead of List)
+UP007,non-pep604-annotation-union,Best Practice,Use X | Y syntax for unions
+UP009,utf8-encoding-declaration,Code Style,UTF-8 encoding declaration is unnecessary
+UP018,native-literals,Code Style,Unnecessary call (rewrite as literal)
+UP032,f-string,Best Practice,Use f-string instead of .format() call
+ARG001,unused-function-argument,Code Style,Unused function argument
+ARG002,unused-method-argument,Code Style,Unused method argument
+C901,complex-structure,Architecture,Function is too complex
+PLR0911,too-many-return-statements,Architecture,Too many return statements
+PLR0912,too-many-branches,Architecture,Too many branches
+PLR0913,too-many-arguments,Architecture,Too many arguments in function definition
+PLR0915,too-many-statements,Architecture,Too many statements
+PLR2004,magic-value-comparison,Code Style,Magic value used in comparison
+PLR5501,collapsible-else-if,Code Style,Use elif instead of else then if
+PLC0415,import-outside-top-level,Code Style,Import should be at top level of file
+PLE0117,nonlocal-without-binding,Logic Error,Nonlocal name found without binding
+PLE0604,invalid-all-object,Code Style,Invalid object in __all__ (must be strings)
+PLE1132,repeated-keyword-argument,Logic Error,Repeated keyword argument
+PLE4703,modified-iterating-set,Logic Error,Iterated set is modified within for loop
+RUF005,collection-literal-concatenation,Performance,Use list/set/dict comprehension instead of concatenation
+RUF010,explicit-f-string-type-conversion,Code Style,Use explicit conversion flag in f-string
+RUF015,unnecessary-iterable-allocation-for-first-element,Performance,Use next() instead of slice for first element
+RUF017,quadratic-list-summation,Performance,Avoid quadratic list summation (use ''.join())
+RUF019,unnecessary-key-check,Code Style,Unnecessary key check before dictionary access
+RUF027,missing-f-string-syntax,Logic Error,Possible f-string without f prefix
+RUF036,none-not-at-end-of-union,Best Practice,None should be at end of type union
+T201,print-statement,Code Style,print statement found (use logging instead)
+T203,found-pprint,Code Style,pprint found (remove debugging code)
+LOG001,direct-logger-instantiation,Best Practice,Use logging.getLogger() to instantiate loggers
+LOG007,exception-without-exc-info,Error Handling,Use logging.exception with falsy exc_info
+LOG015,root-logger-call,Best Practice,Call on root logger (use module logger instead)
+G004,logging-f-string,Performance,Logging statement uses f-string (use lazy evaluation)
+SLF001,private-member-access,Architecture,Private member accessed from outside
+E731,lambda-assignment,Code Style,Do not assign lambda expression (use def)
+W605,invalid-escape-sequence,Logic Error,Invalid escape sequence
+B007,unused-loop-control-variable,Code Style,Loop control variable not used in loop body
+B008,function-call-in-default-argument,Logic Error,Function call in default argument
+B009,get-attr-with-constant,Code Style,getattr() with constant attribute value
+B010,set-attr-with-constant,Code Style,setattr() with constant attribute value
+B011,assert-false,Logic Error,assert False (raise AssertionError instead)
+B015,pointless-comparison,Code Style,Pointless comparison (use assert or remove)
+B018,useless-expression,Code Style,Useless expression (assign or remove)
+B023,function-uses-loop-variable,Logic Error,Function defined in loop uses loop variable
+B026,star-arg-unpacking-after-keyword-arg,Code Style,Star argument unpacking after keyword argument
+B028,no-explicit-stacklevel,Error Handling,No explicit stacklevel in warning
+B904,raise-without-from-inside-except,Error Handling,Raise exception with from clause
+B905,zip-without-explicit-strict,Logic Error,zip() without explicit strict parameter
+B909,loop-iterator-mutation,Logic Error,Mutation to loop iterable during iteration
+A001,builtin-variable-shadowing,Code Style,Variable shadows Python builtin
+A002,builtin-argument-shadowing,Code Style,Function argument shadows Python builtin
+A003,builtin-attribute-shadowing,Code Style,Class attribute shadows Python builtin
+COM812,missing-trailing-comma,Code Style,Missing trailing comma
+DTZ001,call-datetime-without-tzinfo,Security,datetime.datetime() called without tzinfo
+DTZ005,call-datetime-now-without-tzinfo,Security,datetime.datetime.now() called without tz argument
+DJ008,django-model-without-dunder-str,Code Style,Model does not define __str__ method
+EM101,raw-string-in-exception,Code Style,Raw string literal in exception
+EM102,f-string-in-exception,Code Style,f-string literal in exception
+F541,f-string-missing-placeholders,Code Style,f-string without placeholders
+F632,is-literal,Code Style,Use == to compare constant literals
+F634,if-tuple,Logic Error,If test is a tuple (always True)
+F701,break-outside-loop,Logic Error,break outside loop
+F702,continue-outside-loop,Logic Error,continue outside loop
+F704,yield-outside-function,Logic Error,yield outside function
+F706,return-outside-function,Logic Error,return outside function
+F722,forward-annotation-syntax-error,Best Practice,Syntax error in forward annotation
+F811,redefined-while-unused,Code Style,Redefinition of unused name
+F821,undefined-name,Logic Error,Undefined name
+F822,undefined-export,Logic Error,Undefined name in __all__
+F823,undefined-local,Logic Error,Local variable referenced before assignment
+F901,raise-not-implemented,Best Practice,raise NotImplemented should be raise NotImplementedError
+ICU001,invalid-characters,Code Style,Invalid unicode characters in code
+ISC001,single-line-implicit-string-concatenation,Code Style,Implicitly concatenated string literals on one line
+N801,invalid-class-name,Naming,Class name should use CapWords convention
+N802,invalid-function-name,Naming,Function name should be lowercase
+N803,invalid-argument-name,Naming,Argument name should be lowercase
+N804,invalid-first-argument-name-for-class-method,Naming,First argument of class method should be named cls
+N805,invalid-first-argument-name-for-method,Naming,First argument of method should be named self
+N806,non-lowercase-variable-in-function,Naming,Variable in function should be lowercase
+N818,error-suffix-on-exception-name,Naming,Exception name should have Error suffix
+PERF401,manual-list-comprehension,Performance,Use list comprehension instead of manual for loop
+PERF402,manual-list-copy,Performance,Use list() or list.copy() to create a copy
+PERF403,manual-dict-comprehension,Performance,Use dictionary comprehension instead of manual for loop
+PGH001,eval,Security,No builtin eval() allowed
+PGH002,deprecated-log-warn,Best Practice,warn is deprecated in favor of warning
+PGH003,blanket-type-ignore,Best Practice,Use specific rule codes when ignoring type issues
+PGH004,blanket-noqa,Best Practice,Use specific rule codes when using noqa
+PGH005,invalid-mock-access,Best Practice,Mock method should be called
+PT009,pytest-unittest-assertion,Testing,Use regular assert instead of unittest-style assertion
+PT011,pytest-raises-too-broad,Testing,pytest.raises() is too broad (use match parameter)
+PT012,pytest-raises-with-multiple-statements,Testing,pytest.raises() block should contain single statement
+PT018,pytest-composite-assertion,Testing,Assertion should be broken down into multiple parts
+PT022,pytest-useless-yield-fixture,Testing,No teardown in fixture (use return instead of yield)
+Q000,bad-quotes-inline-string,Code Style,Double quotes preferred (or single quotes if configured)
+Q003,avoidable-escaped-quote,Code Style,Change outer quotes to avoid escaping inner quotes
+RSE102,unnecessary-paren-on-raise-exception,Code Style,Unnecessary parentheses on raised exception
+RUF100,unused-noqa,Code Style,Unused noqa directive
+S101,assert,Security,Use of assert detected (can be optimized away)
+S108,hardcoded-temp-file,Security,Insecure usage of temporary file/directory
+S110,try-except-pass,Security,try-except-pass detected (log the exception)
+S113,request-without-timeout,Security,Request call without timeout
+S202,tarfile-unsafe-members,Security,tarfile.extractall() without member filtering
+S301,suspicious-pickle-usage,Security,pickle insecure for untrusted data
+S311,suspicious-non-cryptographic-random-usage,Security,Standard random not suitable for cryptographic purposes
+S506,unsafe-yaml-load,Security,Unsafe yaml.load() (use yaml.safe_load)
+S602,subprocess-popen-with-shell-equals-true,Security,subprocess with shell=True (security risk)
+S603,subprocess-without-shell-equals-true,Security,subprocess call with untrusted input
+S607,start-process-with-partial-path,Security,Partial executable path (security risk)
+S608,hardcoded-sql-expression,Security,SQL injection risk with string-based query
+S701,jinja2-autoescape-false,Security,Jinja2 with autoescape=False (XSS risk)
+TRY002,raise-vanilla-class,Best Practice,Create your own exception (don't raise vanilla Exception)
+TRY003,raise-vanilla-args,Best Practice,Avoid long messages outside exception class
+TRY004,type-check-without-type-error,Best Practice,Prefer TypeError for invalid type
+TRY200,reraise-no-cause,Best Practice,Use raise from to specify exception cause
+TRY300,try-consider-else,Code Style,Consider moving code to else block
+TRY301,raise-within-try,Code Style,Abstract raise to inner function
+UP039,unnecessary-class-parentheses,Code Style,Unnecessary parentheses after class definition
+UP040,non-pep695-type-alias,Best Practice,Use type keyword for type aliases

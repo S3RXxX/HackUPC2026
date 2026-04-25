@@ -1,0 +1,613 @@
+code,type,name,category
+"class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.area = width * height
+        # causes ""Explicit return in __init__"" error
+        return self.area",wrong,Explicit return in __init__ — Python Anti-Patterns  documentation,Correctness
+"elems = [4, 7, 18]
+
+elem0 = elems[0]
+elem1 = elems[1]
+elem2 = elems[2]",wrong,Not using explicit unpacking — Python Anti-Patterns  documentation,Correctness
+"def print_hello_world():
+# indented with tab
+    print(""Hello, World!"")
+def print_goodbye_world():
+    # indented with 4 spaces
+    print(""Goodbye, World!"")",wrong,Indentation contains mixed spaces and tabs — Python Anti-Patterns  documentation,Correctness
+"# read from file-like
+with open(""json_file.json"") as json_file:
+  json_string = json_file.read()
+  dictionary = json.loads(json_string)
+
+# write to file-like
+dictionary = {""key"": ""value""}
+with open(""json_file.json"", ""w"") as json_file:
+  json_string = json.dumps(dictionary)
+  json.file.write(json_string)",wrong,Working with json correctly — Python Anti-Patterns  documentation,Correctness
+"dictionary = {}
+
+if ""list"" not in dictionary:
+    dictionary[""list""] = []
+
+dictionary[""list""].append(""list_item"")",wrong,Not using setdefault() to initialize a dictionary — Python Anti-Patterns  documentation,Correctness
+"def divide(a, b):
+
+    try:
+        result = a / b
+    except:
+        result = None
+
+    return result",wrong,No exception type(s) specified — Python Anti-Patterns  documentation,Correctness
+"l = [1, 2, 3]
+magic_number = 4
+found = False
+
+for n in l:
+    if n == magic_number:
+        found = True
+        print(""Magic number found"")
+        break
+
+if not found:
+    print(""Magic number not found"")",wrong,Not using else where appropriate in a loop — Python Anti-Patterns  documentation,Correctness
+"def print_hello_world():
+    # indented with tab
+    print(""Hello, World!"")
+def print_goodbye_world():
+    # indented with tab
+    print(""Goodbye, World!"")",wrong,Indentation contains tabs — Python Anti-Patterns  documentation,Correctness
+"def append(number, number_list=[]):
+    number_list.append(number)
+    print(number_list)
+    return number_list
+
+append(5) # expecting: [5], actual: [5]
+append(7) # expecting: [7], actual: [5, 7]
+append(2) # expecting: [2], actual: [5, 7, 2]",wrong,Using a mutable default value as an argument — Python Anti-Patterns  documentation,Correctness
+"dictionary = {""message"": ""Hello, World!""}
+
+data = """"
+
+if ""message"" in dictionary:
+    data = dictionary[""message""]
+
+print(data)  # Hello, World!",wrong,Not using get() to return a default value from a dict — Python Anti-Patterns  documentation,Correctness
+"try:
+    5 / 0
+except Exception as e:
+    print(""Exception"")
+# unreachable code!
+except ZeroDivisionError as e:
+    print(""ZeroDivisionError"")",wrong,Bad except clauses order — Python Anti-Patterns  documentation,Correctness
+"def contains_magic_number(numbers, magic_number):
+    for i in numbers:
+        if i == magic_number:
+            print(""This list contains the magic number"")
+    else:
+        print(""This list does NOT contain the magic number"")
+
+contains_magic_number(range(10), 5)
+# This list contains the magic number.
+# This list does NOT contain the magic number.",wrong,else clause on loop without a break statement — Python Anti-Patterns  documentation,Correctness
+"d = {}
+
+if ""k"" not in d:
+    d[""k""] = 6
+
+d[""k""] += 1
+
+print(d[""k""])  # 7",wrong,Not using defaultdict() — Python Anti-Patterns  documentation,Correctness
+"class Rectangle(object):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.area = width * height
+
+class Square(Rectangle):
+    def __init__(self, length):
+        # bad first argument to super()
+        super(self, Square).__init__(length, length)
+
+s = Square(5)
+print(s.area)  # does not execute",wrong,Bad first argument given to super() — Python Anti-Patterns  documentation,Correctness
+"class DateUtil:
+    @staticmethod
+    def from_weekday_to_string(weekday):
+        nameds_weekdays = {
+            0: 'Monday',
+            5: 'Friday'
+        }
+        return nameds_weekdays[weekday]",wrong,Don’t use just class — Python Anti-Patterns  documentation,Correctness
+"class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.area = width * height
+    # should be preceded by @staticmethod here
+    def area(width, height):
+        return width * height",wrong,Method could be a function — Python Anti-Patterns  documentation,Correctness
+"class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    def __enter__(self):
+        print(""in __enter__"")
+        return self
+    def __exit__(self):
+        # never called because
+        # argument signature is wrong
+        print(""in __exit__"")
+    def divide_by_zero(self):
+        # causes ZeroDivisionError exception
+        return self.width / 0
+
+with Rectangle(3, 4) as r:
+    r.divide_by_zero()
+    # __exit__ should be called but isn't
+
+# Output:
+# ""in __enter__""
+# Traceback (most recent call last):
+#   File ""e0235.py"", line 27, in <module>
+#     r.divide_by_zero()
+# TypeError: __exit__() takes exactly 1 argument (4 given)",wrong,"__exit__ must accept 3 arguments: type, value, traceback — Python Anti-Patterns  documentation",Correctness
+"class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.area = width * height
+    # missing first argument ""self""
+    def area():
+        # self is undefined here
+        return self.area",wrong,Method has no argument — Python Anti-Patterns  documentation,Correctness
+"print(8 / 7)  # 1
+
+# SyntaxError
+from __future__ import division
+
+# 1.1428571428571428
+print(8 / 7)",wrong,__future__ import is not the first non-docstring statement — Python Anti-Patterns  documentation,Correctness
+"class Square(object):
+    def __init__(self, length):
+        self._length = length
+    # Java-style
+    def get_length(self):
+        return self._length
+    # Java-style
+    def set_length(self, length):
+        self._length = length
+
+r = Square(5)
+r.get_length()
+r.set_length(6)",wrong,Implementing Java-style getters and setters — Python Anti-Patterns  documentation,Correctness
+"# Overwriting built-in 'list' by assigning values to a variable called 'list'
+list = [1, 2, 3]
+# Defining a list 'cars', will now raise an error
+cars = list()
+# Error: TypeError: 'list' object is not callable",wrong,Assigning to built-in function — Python Anti-Patterns  documentation,Correctness
+"class Rectangle(object):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.area = width * height
+
+class Square(Rectangle):
+    def __init__(self, length):
+        # no arguments provided to super()
+        super().__init__(length, length)
+
+s = Square(5)
+print(s.area)  # does not execute",wrong,Missing argument to super() — Python Anti-Patterns  documentation,Correctness
+"class Rectangle(object):
+    def __init__(self, width, height):
+        self._width = width
+        self._height = height
+
+r = Rectangle(5, 6)
+# direct access of protected member
+print(""Width: {:d}"".format(r._width))",wrong,Accessing a protected member from outside the class — Python Anti-Patterns  documentation,Correctness
+f = lambda x: 2 * x,wrong,Assigning a lambda expression to a variable — Python Anti-Patterns  documentation,Correctness
+"def get_secret_code(password):
+    if password != ""bicycle"":
+        return None
+    else:
+        return ""42""
+
+secret_code = get_secret_code(""unicycle"")
+
+if secret_code is None:
+    print(""Wrong password."")
+else:
+    print(""The secret code is {}"".format(secret_code))",wrong,Returning more than one variable type from function call — Python Anti-Patterns  documentation,Maintainability
+"# wildcard import = bad
+from math import *",wrong,using wildcard imports (from … import *) — Python Anti-Patterns  documentation,Maintainability
+,wrong,Dynamically creating variable/method/function names — Python Anti-Patterns  documentation,Maintainability
+"f = open(""file.txt"", ""r"")
+content = f.read()
+1 / 0  # ZeroDivisionError
+# never executes, possible memory issues or file corruption
+f.close()",wrong,Not using with to open files — Python Anti-Patterns  documentation,Maintainability
+"d = {'data': [{'a': 'b'}, {'b': 'c'}, {'c': 'd'}], 'texts': ['a', 'b', 'c']}
+
+for k, v in d.iteritems():
+    if k == 'data':
+        for i in v:
+            # Do you know what are you iterating now?
+            for k2, v2 in i.iteritems():
+                print(k2, v2)",wrong,Using single letter to name your variables — Python Anti-Patterns  documentation,Maintainability
+,wrong,Using the global statement — Python Anti-Patterns  documentation,Maintainability
+"def someFunction():
+    print(""Is not the preferred PEP 8 pattern for function names"")",wrong,Using CamelCase in function names — Python Anti-Patterns  documentation,Readability
+"numbers = [1,2,3]
+
+# hard to read
+my_dict = dict([(number,number*2) for number in numbers])
+
+print(my_dict)  # {1: 2, 2: 4, 3: 6}",wrong,Not using dict comprehensions — Python Anti-Patterns  documentation,Readability
+"numbers = [1, 2, 3]
+letters = [""A"", ""B"", ""C""]
+
+for index in range(len(numbers)):
+    print(numbers[index], letters[index])",wrong,Not using zip() to iterate over a pair of lists — Python Anti-Patterns  documentation,Readability
+"def gcd(a, b):
+    while b != 0:
+        temp = b
+        b = a % b
+        a = temp
+    return a",wrong,Not using unpacking for updating multiple values at once — Python Anti-Patterns  documentation,Readability
+"a = range(10)
+b = range(10)
+
+print((a is b))",wrong,Test for object identity should be is — Python Anti-Patterns  documentation,Readability
+"def get_name():
+    return ""Richard"", ""Xavier"", ""Jones""
+
+name = get_name()
+
+# no idea what these indexes map to!
+print(name[0], name[1], name[2])",wrong,Not using named tuples when returning more than one value from a function — Python Anti-Patterns  documentation,Readability
+,wrong,Do not use if/else to switch — Python Anti-Patterns  documentation,Readability
+"l = [1,2,3]
+
+# creating index variable
+for i in range(0,len(l)):
+    # using index to access list
+    le = l[i]
+    print(i,le)",wrong,Using an unpythonic loop — Python Anti-Patterns  documentation,Readability
+"import types
+
+class Rectangle(object):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+r = Rectangle(3, 4)
+
+# bad
+if type(r) is types.ListType:
+    print(""object r is a list"")",wrong,Using type() to compare types — Python Anti-Patterns  documentation,Readability
+"number = None
+
+if number == None:
+    print(""This works, but is not the preferred PEP 8 pattern"")",wrong,Comparing things to None the wrong way — Python Anti-Patterns  documentation,Readability
+"values = [1, 2, 3]
+doubles = map(lambda x: x * 2, values)",wrong,Using map() or filter() where list comprehension is possible — Python Anti-Patterns  documentation,Readability
+"n_int = ""Hello, World!""
+
+# mistakenly assuming that n_int is a number
+4 / n_int",wrong,Putting type information in a variable name — Python Anti-Patterns  documentation,Readability
+"import os
+
+# violates EAFP coding style
+if os.path.exists(""file.txt""):
+    os.unlink(""file.txt"")",wrong,Asking for permission instead of forgiveness — Python Anti-Patterns  documentation,Readability
+"d = {""first_name"": ""Alfred"", ""last_name"":""Hitchcock""}
+
+for key in d:
+    print(""{} = {}"".format(key, d[key]))",wrong,Not using items() to iterate over a dictionary — Python Anti-Patterns  documentation,Readability
+"flag = True
+
+# Not PEP 8's preferred pattern
+if flag == True:
+    print(""This works, but is not the preferred PEP 8 pattern"")",wrong,Comparing things to True the wrong way — Python Anti-Patterns  documentation,Readability
+"person = {
+    'first': 'Tobin',
+    'age':20
+}
+
+print('{0} is {1} years old'.format(
+    person['first'],
+    person['age'])
+)
+# Output: Tobin is 20 years old
+
+person = {
+    'first': 'Tobin',
+    'last': 'Brown',
+    'age':20
+}
+
+# Bad: we have to change the replacement fields within
+# our string, once we add new values
+print('{0} {1} is {2} years old'.format(
+    person['first'],
+    person['last'],
+    person['age'])
+)  # bad
+# Output: Tobin Brown is 20 years old",wrong,Not using dict keys when formatting strings — Python Anti-Patterns  documentation,Readability
+"s = ""print(\""Hello, World!\"")""
+exec s",wrong,use of exec — Python Anti-Patterns  documentation,Security
+"d = {i: i * 2 for i in xrange(10000000)}
+
+# Slow and memory hungry.
+for key, value in d.items():
+    print(""{0} = {1}"".format(key, value))",wrong,Not using iteritems() to iterate over a large dictionary in Python 2 — Python Anti-Patterns  documentation,Performance
+"l = [1, 2, 3, 4]
+
+# iterates over three elements in the list
+if 3 in l:
+    print(""The number 3 is in the list."")
+else:
+    print(""The number 3 is NOT in the list."")",wrong,Using key in list to check if key is contained in list — Python Anti-Patterns  documentation,Performance
+,good,Explicit return in __init__ — Python Anti-Patterns  documentation,Correctness
+"elems = [4, 7, 18]
+
+elem0, elem1, elem2 = elems",good,Not using explicit unpacking — Python Anti-Patterns  documentation,Correctness
+,good,Indentation contains mixed spaces and tabs — Python Anti-Patterns  documentation,Correctness
+"# read from file-like
+with open(""json_file"") as json_file:
+  dictionary = json.load(json_file)
+
+# write to file-like
+dictionary = {""key"": ""value""}
+with open(""json_file.json"", ""w"") as json_file:
+  json.dump(dictionary, json_file)",good,Working with json correctly — Python Anti-Patterns  documentation,Correctness
+"dictionary = {}
+
+dictionary.setdefault(""list"", []).append(""list_item"")",good,Not using setdefault() to initialize a dictionary — Python Anti-Patterns  documentation,Correctness
+"def divide(a, b):
+
+    result = None
+
+    try:
+        result = a / b
+    except ZeroDivisionError:
+        print(""Type error: division by 0."")
+    except TypeError:
+        # E.g., if b is a string
+        print(""Type error: division by '{0}'."".format(b))
+    except Exception as e:
+        # handle any other exception
+        print(""Error '{0}' occured. Arguments {1}."".format(e.message, e.args))
+    else:
+        # Excecutes if no exception occured
+        print(""No errors"")
+    finally:
+        # Executes always
+        if result is None:
+            result = 0
+
+    return result",good,No exception type(s) specified — Python Anti-Patterns  documentation,Correctness
+"l = [1, 2, 3]
+magic_number = 4
+
+for n in l:
+    if n == magic_number:
+        print(""Magic number found"")
+        break
+else:
+    print(""Magic number not found"")",good,Not using else where appropriate in a loop — Python Anti-Patterns  documentation,Correctness
+"def print_hello_world():
+    # indented with 4 spaces
+    print(""Hello, World!"")
+def print_goodbye_world():
+    # indented with 4 spaces
+    print(""Goodbye, World!"")",good,Indentation contains tabs — Python Anti-Patterns  documentation,Correctness
+"# the keyword None is the sentinel value representing empty list
+def append(number, number_list=None):
+    if number_list is None:
+        number_list = []
+    number_list.append(number)
+    print(number_list)
+    return number_list
+
+append(5) # expecting: [5], actual: [5]
+append(7) # expecting: [7], actual: [7]
+append(2) # expecting: [2], actual: [2]",good,Using a mutable default value as an argument — Python Anti-Patterns  documentation,Correctness
+"dictionary = {""message"": ""Hello, World!""}
+
+data = dictionary.get(""message"", """")
+
+print(data)  # Hello, World!",good,Not using get() to return a default value from a dict — Python Anti-Patterns  documentation,Correctness
+"try:
+    5 / 0
+except ZeroDivisionError as e:
+    print(""ZeroDivisionError"")
+except Exception as e:
+    print(""Exception"")",good,Bad except clauses order — Python Anti-Patterns  documentation,Correctness
+,good,else clause on loop without a break statement — Python Anti-Patterns  documentation,Correctness
+"from collections import defaultdict
+
+d = defaultdict(lambda : 6)
+d[""k""] += 1
+
+print(d[""k""])  # 7",good,Not using defaultdict() — Python Anti-Patterns  documentation,Correctness
+"class Rectangle(object):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.area = width * height
+
+class Square(Rectangle):
+    def __init__(self, length):
+        # super() executes fine now
+        super(Square, self).__init__(length, length)
+
+s = Square(5)
+print(s.area)  # 25",good,Bad first argument given to super() — Python Anti-Patterns  documentation,Correctness
+"def from_weekday_to_string(weekday):
+    nameds_weekdays = {
+        0: 'Monday',
+        5: 'Friday'
+    }
+    return nameds_weekdays[weekday]",good,Don’t use just class — Python Anti-Patterns  documentation,Correctness
+,good,Method could be a function — Python Anti-Patterns  documentation,Correctness
+,good,"__exit__ must accept 3 arguments: type, value, traceback — Python Anti-Patterns  documentation",Correctness
+,good,Method has no argument — Python Anti-Patterns  documentation,Correctness
+"# removed __future__ import statement
+print(8 / 7)  # 1",good,__future__ import is not the first non-docstring statement — Python Anti-Patterns  documentation,Correctness
+"class Square(object):
+    def __init__(self, length):
+        self.length = length
+
+r = Square(5)
+r.length
+r.length = 6",good,Implementing Java-style getters and setters — Python Anti-Patterns  documentation,Correctness
+"# Numbers used as variable name instead of 'list'
+numbers = [1, 2, 3]
+# Defining 'cars' as list, will work just fine
+cars = list()",good,Assigning to built-in function — Python Anti-Patterns  documentation,Correctness
+"class Rectangle(object):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.area = width * height
+
+class Square(Rectangle):
+    def __init__(self, length):
+        # super() executes fine now
+        super(Square, self).__init__(length, length)
+
+s = Square(5)
+print(s.area)  # 25",good,Missing argument to super() — Python Anti-Patterns  documentation,Correctness
+,good,Accessing a protected member from outside the class — Python Anti-Patterns  documentation,Correctness
+def f(x): return 2 * x,good,Assigning a lambda expression to a variable — Python Anti-Patterns  documentation,Correctness
+"def get_secret_code(password):
+    if password != ""bicycle"":
+        raise ValueError
+    else:
+        return ""42""
+
+try:
+    secret_code = get_secret_code(""unicycle"")
+    print(""The secret code is {}"".format(secret_code))
+except ValueError:
+    print(""Wrong password."")",good,Returning more than one variable type from function call — Python Anti-Patterns  documentation,Maintainability
+,good,using wildcard imports (from … import *) — Python Anti-Patterns  documentation,Maintainability
+,good,Dynamically creating variable/method/function names — Python Anti-Patterns  documentation,Maintainability
+"with open(""file.txt"", ""r"") as f:
+    content = f.read()
+    # Python still executes f.close() even though an exception occurs
+    1 / 0",good,Not using with to open files — Python Anti-Patterns  documentation,Maintainability
+"data_dict = {
+    'data': [{'a': 'b'}, {'b': 'c'}, {'c': 'd'}],
+    'texts': ['a', 'b', 'c']
+}
+
+for key, value in data_dict.iteritems():
+    if key == 'data':
+        for data_item in value:
+            # Do you know what are you iterating now?
+            for data_key, data_value in data_item.iteritems():
+                print(data_key, data_value)",good,Using single letter to name your variables — Python Anti-Patterns  documentation,Maintainability
+,good,Using the global statement — Python Anti-Patterns  documentation,Maintainability
+"def some_function():
+    print(""PEP 8 Style Guide prefers this pattern"")",good,Using CamelCase in function names — Python Anti-Patterns  documentation,Readability
+"numbers = [1, 2, 3]
+
+my_dict = {number: number * 2 for number in numbers}
+
+print(my_dict)  # {1: 2, 2: 4, 3: 6}",good,Not using dict comprehensions — Python Anti-Patterns  documentation,Readability
+"numbers = [1, 2, 3]
+letters = [""A"", ""B"", ""C""]
+
+for numbers_value, letters_value in zip(numbers, letters):
+    print(numbers_value, letters_value)",good,Not using zip() to iterate over a pair of lists — Python Anti-Patterns  documentation,Readability
+"def gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a",good,Not using unpacking for updating multiple values at once — Python Anti-Patterns  documentation,Readability
+"some_list = None
+
+if some_list is None:
+    do_somthing_with_the_list()",good,Test for object identity should be is — Python Anti-Patterns  documentation,Readability
+"from collections import namedtuple
+
+def get_name():
+    name = namedtuple(""name"", [""first"", ""middle"", ""last""])
+    return name(""Richard"", ""Xavier"", ""Jones"")
+
+name = get_name()
+
+# much easier to read
+print(name.first, name.middle, name.last)",good,Not using named tuples when returning more than one value from a function — Python Anti-Patterns  documentation,Readability
+,good,Do not use if/else to switch — Python Anti-Patterns  documentation,Readability
+"for i, le in enumerate(l):
+    print(i, le)",good,Using an unpythonic loop — Python Anti-Patterns  documentation,Readability
+"import types
+
+class Rectangle(object):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+r = Rectangle(3, 4)
+
+# good
+if isinstance(r, types.ListType):
+    print(""object r is a list"")",good,Using type() to compare types — Python Anti-Patterns  documentation,Readability
+"number = None
+
+if number is None:
+    print(""PEP 8 Style Guide prefers this pattern"")",good,Comparing things to None the wrong way — Python Anti-Patterns  documentation,Readability
+"values = [1, 2, 3]
+doubles = [x * 2 for x in values]",good,Using map() or filter() where list comprehension is possible — Python Anti-Patterns  documentation,Readability
+"n = ""Hello, World!""
+
+# still a problem, but less misleading now
+4 / n",good,Putting type information in a variable name — Python Anti-Patterns  documentation,Readability
+"import os
+
+try:
+    os.unlink(""file.txt"")
+# raised when file does not exist
+except OSError:
+    pass",good,Asking for permission instead of forgiveness — Python Anti-Patterns  documentation,Readability
+"d = {""first_name"": ""Alfred"", ""last_name"":""Hitchcock""}
+
+for key,val in d.items():
+    print(""{} = {}"".format(key, val))",good,Not using items() to iterate over a dictionary — Python Anti-Patterns  documentation,Readability
+,good,Comparing things to True the wrong way — Python Anti-Patterns  documentation,Readability
+"person = {
+    'first': 'Tobin',
+    'age':20
+}
+
+print('{first} is {age} years old'.format(**person))
+# Output: Tobin is 20 years old
+
+person = {
+    'first':'Tobin',
+    'last': 'Brown',
+    'age':20
+}
+print('{first} {last} is {age} years old'.format(**person))
+# Output: Tobin Brown is 20 years old",good,Not using dict keys when formatting strings — Python Anti-Patterns  documentation,Readability
+"def print_hello_world():
+    print(""Hello, World!"")
+
+print_hello_world()",good,use of exec — Python Anti-Patterns  documentation,Security
+"d = {i: i * 2 for i in xrange(10000000)}
+
+# Memory efficient.
+for key, value in d.iteritems():
+    print(""{0} = {1}"".format(key, value))",good,Not using iteritems() to iterate over a large dictionary in Python 2 — Python Anti-Patterns  documentation,Performance
+"s = set([1, 2, 3, 4])
+
+if 3 in s:
+    print(""The number 3 is in the list."")
+else:
+    print(""The number 3 is NOT in the list."")",good,Using key in list to check if key is contained in list — Python Anti-Patterns  documentation,Performance

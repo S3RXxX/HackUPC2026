@@ -1,0 +1,247 @@
+code,type,Name,Message
+try: json.loads(s)\nexcept: return None,wrong,broad-exception-catch,Avoid bare 'except' catching all exceptions
+try: open(f)\nexcept FileNotFoundError: pass,wrong,empty-except-block,Do not silently ignore exceptions
+try: a/b\nexcept Exception: return None,wrong,catching-generICexception,Avoid catching Exception; use specific exceptions
+try: os.remove(f)\nexcept OSError: return False,wrong,swallowed-exception,Exceptions should be logged or handled explicitly
+except KeyError: raise ValueError('bad'),wrong,lost-exception-context,Re-raising exceptions should preserve context
+except ValueError: raise,wrong,bare-raise-usage,Bare raise is fragile in broad except blocks
+try: idx = lst.index(x)\nexcept ValueError: return -1,wrong,exception-used-for-flow-control,Do not use exceptions for normal control flow
+try:\n  try:\n    ...,wrong,nested-try-except-blocks,Avoid deeply nested try/except blocks
+except AttributeError as e: logging.error(e),wrong,logged-but-not-handled-exception,Logging without handling or returning is incomplete
+except AttributeError: raise ValueError(),wrong,missing-from-in-raise,Use 'raise ... from e' to preserve traceback
+"def f(x, l=[]): l.append(x)",wrong,mutable-default-list-argument,Do not use mutable defaults (list)
+"def f(x, d={}): d[x]=1",wrong,mutable-default-dict-argument,Do not use mutable defaults (dict)
+"def f(x, s=set()): s.add(x)",wrong,mutable-default-set-argument,Do not use mutable defaults (set)
+"def m(self, l=[]): ...",wrong,mutable-default-in-method,Avoid mutable defaults in class methods
+def f(d={'a':{}}): ...,wrong,nested-mutable-default-argument,Avoid nested mutable default structures
+def f(c=get_cfg()): ...,wrong,function-call-in-default-argument,Default args should not call functions
+"def f(a={}, b=[], c=set()): ...",wrong,multiple-mutable-default-arguments,Avoid multiple mutable defaults
+"def f(x, cache={}): ...",wrong,mutable-default-used-as-cache,Avoid using mutable defaults for caching
+arr[len(arr)],wrong,index-out-of-bounds-access,Do not access index len(array)
+for i in range(len(arr)-1):,wrong,loop-boundary-off-by-one,Ensure loops include all elements
+text[0:n+1],wrong,string-slicing-off-by-one,Check slicing boundaries
+for i in range(n+1):,wrong,extra-iteration-in-loop,Avoid +1 in loop unless needed
+high = len(arr),wrong,binary-search-bound-error,High index should be len(array)-1
+i <= len(arr),wrong,invalid-index-range-check,Upper bound should be exclusive
+start = page*n,wrong,pagination-start-index-error,Page index calculation must match base
+buf = [0]*n,wrong,buffer-size-off-by-one,Allocate correct buffer size
+def f(...):\n if a:\n  if b:\n   if c: ...,wrong,high-cyclomatICcomplexity,Function has too many nested conditions; refactor into smaller functions
+if a:...\nelif b:...\nelif c:...\nelif d:...,wrong,too-many-branches,Too many conditional branches reduce readability
+def process(): validate(); calc(); save(); notify(),wrong,long-method-multiple-responsibilities,Function does too many things; violates single responsibility
+"def f(a,b,c,d,e,f,...): ...",wrong,too-many-parameters,Function has too many parameters; use config object
+"import os, sys\n# not used",wrong,unused-imports,Remove unused imports
+"def f(a,b,c): return a",wrong,unused-parameters,Function parameters should be used or removed
+x = compute()\nreturn y,wrong,unused-variables,Variables declared but never used
+return True\nprint('never runs'),wrong,unreachable-code,Code after return is never executed
+if x>10:...\nelif x>5:...\nelif x>20:...,wrong,dead-conditional-branch,Condition can never be reached
+def helper(): pass,wrong,unused-function,Function defined but never used
+# old logic here,wrong,commented-out-code,Remove commented-out code instead of keeping it
+class Logger: ...,wrong,unused-class,Class defined but never used
+config = {...}\n# not used,wrong,unused-assignment,Assigned variable never used
+if x > 100: price *= 0.85,wrong,magICnumbers,Avoid hardcoded numeric literals; use constants
+"requests.get(url, timeout=30)",wrong,hardcoded-timeout,Avoid hardcoded timeout values
+sleep(2**n * 0.1),wrong,hardcoded-retry-logic,Retry/backoff logic should be configurable
+api='https://api.example.com',wrong,hardcoded-addresses,Do not hardcode IPs/URLs
+open('/etc/app/config.json'),wrong,hardcoded-file-paths,Avoid hardcoded file system paths
+password='admin123',wrong,hardcoded-credentials,Never hardcode secrets
+if weight<5: cost=10.99,wrong,hardcoded-business-rules,Business rules should be configurable
+"user[0], user[1]",wrong,hardcoded-array-index,Avoid relying on fixed indices
+def FetchUserData(UserID):,wrong,inconsistent-naming-conventions,Use consistent naming style (PEP8)
+"def x(a,b): return a+b",wrong,non-descriptive-names,Use meaningful variable/function names
+"l, n, s",wrong,too-short-variable-names,Avoid single-letter names except simple loops
+"data, datalist, data_list",wrong,confusing-similar-names,Avoid similar variable names in same scope
+class userAccount:,wrong,non-pep8-class-name,Class names should use PascalCase
+def FetchData():,wrong,non-pep8-function-name,Function names should use snake_case
+max_retry = 5,wrong,constant-not-uppercase,Constants should be UPPER_CASE
+def list(x): ...,wrong,shadowing-builtins,Do not override built-in names
+def f(x): return x*x,wrong,non-descriptive-function-name,Function name should describe behavior
+Function handles multiple concerns making it hard to maintain and test,wrong,long-method-too-many-responsibilities,Long Method With Too Many Responsibilities
+Function mixes validation business logic IO and persistence in one place,wrong,multiple-responsibilities-single-function,Multiple Responsibilities in Single Function
+Deep nesting increases cyclomatic complexity and reduces readability,wrong,excessive-branching-and-nesting,Excessive Branching and Nesting
+if user:\n  if user.role=='admin':\n    if action=='read': return True,wrong,nested-if-depth,Too many nested if statements reduce readability
+if x:\n  if y:\n    do(),wrong,merge-nested-if,Nested if statements can be combined
+if a:\n if b:\n  if c:\n   do(),wrong,cognitive-complexity,High branching complexity reduces readability
+def f():\n validate()\n calc()\n save(),wrong,long-method-too-many-responsibilities,Method performs too many unrelated tasks
+if cond:\n return True\nelse:\n return False,wrong,return-simplification,Boolean return can be simplified
+if x>0:\n do_a()\nif x>0:\n do_b(),wrong,duplicate-condition-check,Same condition repeated in multiple branches
+if role=='admin':\n log()\n access()\nelif role=='manager':\n log()\n access(),wrong,duplicated-branch-logic,Repeated logic across conditional branches
+if type=='A':\n doA()\nelif type=='B':\n doB()\nelif type=='C':\n doC(),wrong,too-many-branches,Excessive branching increases complexity
+if user:\n if user.active:\n  if user.role=='admin': do(),wrong,deep-nesting-guard-clauses-missing,Missing guard clauses leads to deep nesting
+if cond==True:\n do(),wrong,boolean-comparison-unnecessary,Explicit True/False comparison is redundant
+if role=='manager':\n if dept==res.dept:\n  if action=='read': return True,wrong,permission-logICcomplexity,Permission rules are overly nested and hard to read
+if data:\n if data.name:\n  if len(data.name)>2: ok(),wrong,validation-deep-nesting,Validation logic is deeply nested and unclear
+for i in items:\n if i:\n  if i.price: total+=i.price,wrong,loop-condition-nesting,Nested conditions inside loops reduce readability
+if order:\n if order.items:\n  process(),wrong,error-handling-deep-nesting,Error handling is overly nested
+if role=='emp':\n if action=='read':\n  if public: return True,wrong,role-check-complexity,Role checks are overly complex and nested
+if ship:\n if ship.addr:\n  if ship.country=='US': cost=5,wrong,shipping-rule-nesting,Shipping rules are overly nested and complex
+if pay:\n if pay.method=='card':\n  if pay.num: ok(),wrong,payment-validation-depth,Payment validation logic is deeply nested
+if order:\n validate()\n calc()\n save(),wrong,multiple-responsibilities-in-one-block,One block performs multiple unrelated tasks
+if a: x()\nelse:\n if b: y()\n else: z(),wrong,else-chain-explosion,Excessive else branching reduces readability
+if user:\n if user.profile:\n  if user.profile.valid: run(),wrong,null-guard-missing-deep-access,Missing null checks causes deep nesting
+loop + sum/accumulate repeated in multiple functions,wrong,duplicate-loop-aggregation-logic,Repeated loop-based aggregation logic across functions should be consolidated
+manual concatenation of multiple fields in different functions,wrong,duplicate-string-construction-pattern,Repeated string formatting logic should be extracted
+same checks for required/length/type repeated in multiple functions,wrong,duplicate-validation-rules,Repeated validation rules across inputs should be centralized
+same exception handling copied in multiple functions,wrong,duplicate-error-handling-pattern,Repeated try-except or error handling logic should be unified
+same extract-transform steps repeated in multiple functions,wrong,duplicate-data-processing-flow,Repeated data transformation steps should be abstracted
+repeated open/read/write/exists checks,wrong,duplicate-file-io-logic,Repeated file read/write logic should be centralized
+same if/elif logic repeated across functions,wrong,duplicate-conditional-branching,Repeated conditional structures should be simplified or unified
+same arithmetic logic duplicated in multiple places,wrong,duplicate-calculation-pattern,Repeated calculation formulas should be extracted
+same request + parse + return pattern repeated,wrong,duplicate-api-call-structure,Repeated request/response handling should be abstracted
+same dictionary/object building repeated in multiple functions,wrong,duplicate-object-construction,Repeated object creation patterns should be unified
+same guard clauses repeated everywhere,wrong,duplicate-null-check-pattern,Repeated null/empty checks should be centralized
+same if-condition filtering repeated across loops,wrong,duplicate-loop-filtering-logic,Repeated filtering inside loops should be extracted
+same stats computed separately in multiple functions,wrong,duplicate-aggregation-statistics,Repeated min/max/avg computation logic should be generalized
+same formatting applied in multiple places,wrong,duplicate-formatting-logic,Repeated formatting rules should be centralized
+multiple if/else mappings for same transformation,wrong,duplicate-configuration-mapping,Repeated mapping logic should be replaced with configuration-driven approach
+open/use/close pattern repeated in many functions,wrong,duplicate-resource-handling-pattern,Repeated resource lifecycle handling should be unified
+same sequence of validation steps repeated,wrong,duplicate-data-validation-flow,Repeated multi-step validation flows should be abstracted
+same multi-condition if chains repeated,wrong,duplicate-condition-check-chain,Repeated chained conditions should be simplified
+same core logic copied into multiple functions,wrong,duplicate-domain-logICrepetition,Repeated business logic across functions should be centralized
+same nested if/else structures repeated,wrong,duplicate-control-flow-structure,Repeated control flow patterns should be refactored
+user-input-concatenated-into-shell-command,wrong,unsafe-command-execution,using-direct-shell-commands-with-user-input
+subprocess-called-with-shell-true-and-raw-input,wrong,unsafe-subprocess-usage,using-shell-enabled-process-execution
+user-data-passed-directly-to-command,wrong,unvalidated-input-in-commands,not-validating-input-before-system-call
+user-controlled-path-in-command,wrong,unsafe-file-command-handling,using-user-input-in-file-operations
+dynamICcommand-built-from-raw-input,wrong,improper-command-composition,building-commands-by-string-concatenation
+eval-called-on-user-input,wrong,unsafe-eval-usage,executing-dynamICcode-from-input
+username-and-password-written-in-source,wrong,hardcoded-credentials-usage,storing-secrets-directly-in-code
+api-key-defined-in-code,wrong,hardcoded-api-keys,embedding-api-keys-in-source-code
+access-key-and-secret-in-source,wrong,hardcoded-cloud-secrets,storing-cloud-access-keys-in-code
+statICencryption-key-in-code,wrong,hardcoded-encryption-secrets,embedding-encryption-keys-in-code
+jwt-secret-hardcoded,wrong,hardcoded-auth-secrets,storing-authentication-secrets-in-code
+sensitive-config-values-in-source,wrong,insecure-config-storage,keeping-sensitive-config-in-code
+service-password-in-code,wrong,hardcoded-service-credentials,embedding-service-login-details
+ssh-private-key-in-code,wrong,hardcoded-private-keys,storing-private-keys-in-source
+md5-or-sha1-for-security-use,wrong,weak-hashing-algorithm,using-outdated-hash-functions
+plain-or-weak-hashed-passwords,wrong,insecure-password-storage,storing-passwords-incorrectly
+hashing-without-salt,wrong,missing-salt-in-hashing,not-using-salt-for-password-hashing
+random-used-for-security-tokens,wrong,insecure-random-generation,using-non-secure-random-functions
+time-based-or-sequential-token,wrong,predictable-token-generation,creating-tokens-from-guessable-data
+ecb-mode-encryption,wrong,unsafe-encryption-practices,using-insecure-encryption-modes
+custom-encryption-algorithm,wrong,custom-crypto-implementation,building-own-encryption-logic
+direct-string-equality-for-secrets,wrong,insecure-comparison-logic,using-non-constant-time-comparisons
+plain-hash-for-password-derivation,wrong,weak-key-derivation,using-simple-or-fast-hashing-for-keys
+statICiv-for-encryption,wrong,insecure-iv-handling,using-fixed-or-predictable-iv
+try: json.loads(s)\nexcept json.JSONDecodeError: return None,good,broad-exception-catch,Avoid bare 'except' catching all exceptions
+except FileNotFoundError: logging.warning('missing'); return '',good,empty-except-block,Do not silently ignore exceptions
+except ZeroDivisionError: return None,good,catching-generICexception,Avoid catching Exception; use specific exceptions
+except OSError as e: logging.error(e); return False,good,swallowed-exception,Exceptions should be logged or handled explicitly
+except KeyError as e: raise ValueError('bad') from e,good,lost-exception-context,Re-raising exceptions should preserve context
+except ValueError as e: raise e,good,bare-raise-usage,Bare raise is fragile in broad except blocks
+if x in lst: return lst.index(x),good,exception-used-for-flow-control,Do not use exceptions for normal control flow
+split logic into separate try blocks,good,nested-try-except-blocks,Avoid deeply nested try/except blocks
+except AttributeError as e: logging.error(e); return None,good,logged-but-not-handled-exception,Logging without handling or returning is incomplete
+except AttributeError as e: raise ValueError() from e,good,missing-from-in-raise,Use 'raise ... from e' to preserve traceback
+"def f(x, l=None): l = l or []",good,mutable-default-list-argument,Do not use mutable defaults (list)
+"def f(x, d=None): d = d or {}",good,mutable-default-dict-argument,Do not use mutable defaults (dict)
+"def f(x, s=None): s = s or set()",good,mutable-default-set-argument,Do not use mutable defaults (set)
+"def m(self, l=None): l = l or []",good,mutable-default-in-method,Avoid mutable defaults in class methods
+def f(d=None): d = {'a':{}} if d is None else d,good,nested-mutable-default-argument,Avoid nested mutable default structures
+def f(c=None): c = get_cfg() if c is None else c,good,function-call-in-default-argument,Default args should not call functions
+use None for all and init inside,good,multiple-mutable-default-arguments,Avoid multiple mutable defaults
+use functools.lru_cache,good,mutable-default-used-as-cache,Avoid using mutable defaults for caching
+arr[len(arr)-1],good,index-out-of-bounds-access,Do not access index len(array)
+for i in range(len(arr)):,good,loop-boundary-off-by-one,Ensure loops include all elements
+text[0:n],good,string-slicing-off-by-one,Check slicing boundaries
+for i in range(n),good,extra-iteration-in-loop,Avoid +1 in loop unless needed
+high = len(arr)-1,good,binary-search-bound-error,High index should be len(array)-1
+i < len(arr),good,invalid-index-range-check,Upper bound should be exclusive
+start = (page-1)*n,good,pagination-start-index-error,Page index calculation must match base
+buf = [0]*(n+1),good,buffer-size-off-by-one,Allocate correct buffer size
+split logic into smaller functions or strategy map,good,high-cyclomatICcomplexity,Function has too many nested conditions; refactor into smaller functions
+use mapping dict or separate functions,good,too-many-branches,Too many conditional branches reduce readability
+"split into validate(), calculate(), save(), notify()",good,long-method-multiple-responsibilities,Function does too many things; violates single responsibility
+def f(config): use config object,good,too-many-parameters,Function has too many parameters; use config object
+remove unused imports,good,unused-imports,Remove unused imports
+def f(a): return a,good,unused-parameters,Function parameters should be used or removed
+remove x or use it,good,unused-variables,Variables declared but never used
+remove unreachable code,good,unreachable-code,Code after return is never executed
+fix ordering or remove impossible branch,good,dead-conditional-branch,Condition can never be reached
+remove or use function,good,unused-function,Function defined but never used
+delete dead code,good,commented-out-code,Remove commented-out code instead of keeping it
+remove or use class,good,unused-class,Class defined but never used
+remove assignment,good,unused-assignment,Assigned variable never used
+"use MAX_LIMIT, DISCOUNT constants",good,magICnumbers,Avoid hardcoded numeric literals; use constants
+use TIMEOUT constant/config,good,hardcoded-timeout,Avoid hardcoded timeout values
+use configurable retry strategy,good,hardcoded-retry-logic,Retry/backoff logic should be configurable
+load from config/env,good,hardcoded-addresses,Do not hardcode IPs/URLs
+use config/env paths,good,hardcoded-file-paths,Avoid hardcoded file system paths
+use env variables or secret manager,good,hardcoded-credentials,Never hardcode secrets
+use config or lookup table,good,hardcoded-business-rules,Business rules should be configurable
+use dict or named fields,good,hardcoded-array-index,Avoid relying on fixed indices
+def fetch_user_data(user_id):,good,inconsistent-naming-conventions,Use consistent naming style (PEP8)
+"def calculate_sum(a,b):",good,non-descriptive-names,Use meaningful variable/function names
+"use values, count, total",good,too-short-variable-names,Avoid single-letter names except simple loops
+use distinct descriptive names,good,confusing-similar-names,Avoid similar variable names in same scope
+class UserAccount:,good,non-pep8-class-name,Class names should use PascalCase
+def fetch_data():,good,non-pep8-function-name,Function names should use snake_case
+MAX_RETRY = 5,good,constant-not-uppercase,Constants should be UPPER_CASE
+def process_list(x):,good,shadowing-builtins,Do not override built-in names
+def square(x): return x*x,good,non-descriptive-function-name,Function name should describe behavior
+,good,long-method-too-many-responsibilities,Long Method With Too Many Responsibilities
+,good,multiple-responsibilities-single-function,Multiple Responsibilities in Single Function
+,good,excessive-branching-and-nesting,Excessive Branching and Nesting
+if not user or user.role!='admin': return False\nreturn action=='read',good,nested-if-depth,Too many nested if statements reduce readability
+if x and y:\n  do(),good,merge-nested-if,Nested if statements can be combined
+if not (a and b and c): return\nprocess(),good,cognitive-complexity,High branching complexity reduces readability
+def f():\n validate()\n process()\n\ndef process():\n calc()\n save(),good,long-method-too-many-responsibilities,Method performs too many unrelated tasks
+return cond,good,return-simplification,Boolean return can be simplified
+if x>0:\n do_a()\n do_b(),good,duplicate-condition-check,Same condition repeated in multiple branches
+"log()\nif role in ['admin','manager']:\n access()",good,duplicated-branch-logic,Repeated logic across conditional branches
+"actions={'A':doA,'B':doB,'C':doC}\nactions.get(type,default)()",good,too-many-branches,Excessive branching increases complexity
+if not user or not user.active: return\nif user.role=='admin': do(),good,deep-nesting-guard-clauses-missing,Missing guard clauses leads to deep nesting
+if cond:\n do(),good,boolean-comparison-unnecessary,Explicit True/False comparison is redundant
+if role=='manager' and dept==res.dept and action=='read': return True,good,permission-logICcomplexity,Permission rules are overly nested and hard to read
+if not data or not data.name: return\nif len(data.name)>2: ok(),good,validation-deep-nesting,Validation logic is deeply nested and unclear
+for i in items:\n if i and i.price:\n  total+=i.price,good,loop-condition-nesting,Nested conditions inside loops reduce readability
+if not order or not order.items: return\nprocess(),good,error-handling-deep-nesting,Error handling is overly nested
+if role=='emp' and action=='read' and public: return True,good,role-check-complexity,Role checks are overly complex and nested
+if ship and ship.addr and ship.country=='US': cost=5,good,shipping-rule-nesting,Shipping rules are overly nested and complex
+if pay and pay.method=='card' and pay.num: ok(),good,payment-validation-depth,Payment validation logic is deeply nested
+if not order: return\nvalidate()\nprocess_order(),good,multiple-responsibilities-in-one-block,One block performs multiple unrelated tasks
+if a: x()\nelif b: y()\nelse: z(),good,else-chain-explosion,Excessive else branching reduces readability
+if not user or not user.profile or not user.profile.valid: return\nrun(),good,null-guard-missing-deep-access,Missing null checks causes deep nesting
+single reusable aggregation function,good,duplicate-loop-aggregation-logic,Repeated loop-based aggregation logic across functions should be consolidated
+shared format function for string building,good,duplicate-string-construction-pattern,Repeated string formatting logic should be extracted
+generic validation function with configurable rules,good,duplicate-validation-rules,Repeated validation rules across inputs should be centralized
+shared error handling wrapper or utility,good,duplicate-error-handling-pattern,Repeated try-except or error handling logic should be unified
+single reusable data processing pipeline,good,duplicate-data-processing-flow,Repeated data transformation steps should be abstracted
+shared file utility functions,good,duplicate-file-io-logic,Repeated file read/write logic should be centralized
+mapping or strategy-based dispatch,good,duplicate-conditional-branching,Repeated conditional structures should be simplified or unified
+single function for calculation logic,good,duplicate-calculation-pattern,Repeated calculation formulas should be extracted
+shared API client function,good,duplicate-api-call-structure,Repeated request/response handling should be abstracted
+factory or builder function,good,duplicate-object-construction,Repeated object creation patterns should be unified
+shared validation/guard utility,good,duplicate-null-check-pattern,Repeated null/empty checks should be centralized
+reusable filter function or predicate,good,duplicate-loop-filtering-logic,Repeated filtering inside loops should be extracted
+generic statistics function,good,duplicate-aggregation-statistics,Repeated min/max/avg computation logic should be generalized
+shared formatter utility,good,duplicate-formatting-logic,Repeated formatting rules should be centralized
+dictionary/config-based mapping,good,duplicate-configuration-mapping,Repeated mapping logic should be replaced with configuration-driven approach
+context manager or shared handler,good,duplicate-resource-handling-pattern,Repeated resource lifecycle handling should be unified
+composable validation pipeline,good,duplicate-data-validation-flow,Repeated multi-step validation flows should be abstracted
+single combined condition or rule engine,good,duplicate-condition-check-chain,Repeated chained conditions should be simplified
+single domain service function,good,duplicate-domain-logICrepetition,Repeated business logic across functions should be centralized
+strategy or dispatch pattern,good,duplicate-control-flow-structure,Repeated control flow patterns should be refactored
+use-safe-process-execution-with-argument-list,good,unsafe-command-execution,using-direct-shell-commands-with-user-input
+use-subprocess-with-explicit-argument-array,good,unsafe-subprocess-usage,using-shell-enabled-process-execution
+validate-input-before-using-in-execution-context,good,unvalidated-input-in-commands,not-validating-input-before-system-call
+use-safe-file-handling-functions,good,unsafe-file-command-handling,using-user-input-in-file-operations
+use-fixed-command-structure-with-parameters,good,improper-command-composition,building-commands-by-string-concatenation
+avoid-dynamICevaluation-of-raw-input,good,unsafe-eval-usage,executing-dynamICcode-from-input
+use-environment-variables-or-secret-store,good,hardcoded-credentials-usage,storing-secrets-directly-in-code
+use-secure-configuration-management,good,hardcoded-api-keys,embedding-api-keys-in-source-code
+use-role-based-or-managed-credentials,good,hardcoded-cloud-secrets,storing-cloud-access-keys-in-code
+use-secure-key-management-system,good,hardcoded-encryption-secrets,embedding-encryption-keys-in-code
+use-rotating-secret-management,good,hardcoded-auth-secrets,storing-authentication-secrets-in-code
+use-external-secure-config-files,good,insecure-config-storage,keeping-sensitive-config-in-code
+use-vault-or-environment-based-config,good,hardcoded-service-credentials,embedding-service-login-details
+use-secure-key-management-or-hsm,good,hardcoded-private-keys,storing-private-keys-in-source
+use-modern-cryptographIChashing,good,weak-hashing-algorithm,using-outdated-hash-functions
+use-strong-password-hashing-algorithm,good,insecure-password-storage,storing-passwords-incorrectly
+always-use-unique-per-user-salt,good,missing-salt-in-hashing,not-using-salt-for-password-hashing
+use-cryptographically-secure-random-generator,good,insecure-random-generation,using-non-secure-random-functions
+use-secure-random-token-generation,good,predictable-token-generation,creating-tokens-from-guessable-data
+use-modern-authenticated-encryption-mode,good,unsafe-encryption-practices,using-insecure-encryption-modes
+use-standard-crypto-libraries,good,custom-crypto-implementation,building-own-encryption-logic
+use-constant-time-comparison,good,insecure-comparison-logic,using-non-constant-time-comparisons
+use-strong-kdf-like-pbkdf2-or-argon2,good,weak-key-derivation,using-simple-or-fast-hashing-for-keys
+use-random-unique-iv-per-operation,good,insecure-iv-handling,using-fixed-or-predictable-iv
