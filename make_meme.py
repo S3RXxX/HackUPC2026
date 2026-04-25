@@ -216,7 +216,6 @@ def meme_pipeline(code_text, user_tags):
     memes_ranked = search_memes(analysis, user_tags, k=5)
     import random
     random.shuffle(memes_ranked)
-    # print(memes_ranked)
     best = memes_ranked[0]
 
     # 3. explain + caption
@@ -244,8 +243,10 @@ def meme_pipeline(code_text, user_tags):
 if __name__ == "__main__":
 
     # tags and codefile as input##########
-    tags = "educational, funny"
-    codefile = "SmellyUnannotated/helper_code.py"
+    tags = "educational, serious"
+    # tags = "sarcastic, criticism"
+    # codefile = "SmellyUnannotated/helper_code.py"
+    codefile = "SmellyUnannotated/calculate_total.py"
 
     with open(codefile, "r", encoding="utf-8") as f:
         code = f.read()
